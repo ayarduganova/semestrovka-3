@@ -1,4 +1,4 @@
-package ru.kpfu.itis.springbootsemestrovka.config;
+package ru.kpfu.itis.springbootsemestrovka;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

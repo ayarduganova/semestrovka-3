@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #ebebeb;
+}
+
+.navbar {
+    background: #f0ecb4;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #964b00;
+    text-align: center;
+    padding: 30px 40px;
+    font-size: 19px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ebebeb;;
+    color: #964b00;
+}
+
+.logo {
+    float: left;
+}
+
+.logo img {
+    width: 123px;
+    margin-left: 30px;
+    position: absolute;
+}
+
+.menu {
+    margin-left: 200px;
+}

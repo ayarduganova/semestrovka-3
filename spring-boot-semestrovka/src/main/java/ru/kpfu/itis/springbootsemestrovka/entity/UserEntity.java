@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import ru.kpfu.itis.springbootsemestrovka.security.user.Role;
 
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -29,5 +30,19 @@ public class UserEntity {
     private Set<Role> roles;
 
     private boolean isActive;
+
+    private boolean isAdmin;
+
+    @OneToOne(mappedBy = "user")
+    private UserInfoEntity userInfoEntity;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<DogEntity> dogs;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PostEntity> posts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<WalkerFormEntity> walkerFormEntities;
 
 }
