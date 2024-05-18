@@ -1,3 +1,4 @@
+
 package ru.kpfu.itis.springbootsemestrovka.alert;
 
 public final class AlertMessage {
