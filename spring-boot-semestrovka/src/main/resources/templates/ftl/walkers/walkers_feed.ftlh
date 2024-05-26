@@ -2,7 +2,7 @@
 <#import "../PARTS/menu&common.ftlh" as m>
 <#assign isAdmin>
     <#if current_user.isAdmin()>
-        <a href="../admin">Админ</a>
+        <a href="../admin/users">Админ</a>
     </#if>
 </#assign>
 <@m.menuWithCommon page="main" css="/css/walkers.css" admin=isAdmin>
@@ -25,12 +25,20 @@
         </form>
     </div>
 
-    <a href="#" class="btn" id="btn">стать выгульщиком</a>
-
     <div class="posts">
         <#if service.hasRole(current_user, role)>
+        <form method="get" action="/walkers/addPost">
             <button class="plus-button">+</button>
+        </form>
+        <#else>
+            <a href="#" class="btn" id="btn">стать выгульщиком</a>
         </#if>
+
+        <#list posts! as post>
+            <p>Пользователь: ${post.userInfoResponse().firstName()} ${post.userInfoResponse().lastName()}</p>
+            <p>Комментарий: ${post.comment()}</p>
+            <button type="submit">Написать</button>
+        </#list>
     </div>
 
     <script src="/js/walkers.js" type="text/javascript"></script>

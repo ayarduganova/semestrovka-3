@@ -3,6 +3,8 @@ package ru.kpfu.itis.springbootsemestrovka.mapper;
 
 import org.springframework.stereotype.Component;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.UserInfoRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.UserInfoResponse;
+import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserInfoEntity;
 
 @Component
@@ -44,7 +46,13 @@ public class UserInfoMapper implements StandartMapper<UserInfoRequest, UserInfoE
         return userInfoEntity;
     }
 
-//    UserInfoEntity UserInfoRequestToUserInfoEntity(UserInfoRequest userRequest);
-//
-//    UserInfoEntity updateEntityFromRequest(UserInfoRequest userRequest, @MappingTarget UserInfoEntity userEntity);
+    public UserInfoResponse toResponse(UserInfoEntity user){
+        return UserInfoResponse.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .gender(user.getGender())
+                .birthday(user.getBirthday())
+                .email(user.getEmail())
+                .build();
+    }
 }

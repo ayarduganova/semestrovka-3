@@ -1,4 +1,4 @@
 package ru.kpfu.itis.springbootsemestrovka.dto.req;
 
-public record PostRequest() {
+public record PostRequest(String comment) {
 }

@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/main")
+                        .defaultSuccessUrl("/walkers")
                         .failureUrl("/login-error")
                         .permitAll()
                 )

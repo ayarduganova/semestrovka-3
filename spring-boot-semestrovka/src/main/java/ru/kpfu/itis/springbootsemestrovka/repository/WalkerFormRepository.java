@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.WalkerFormEntity;
 
 import java.util.List;
@@ -24,4 +23,5 @@ public interface WalkerFormRepository extends JpaRepository<WalkerFormEntity, UU
     @Transactional
     @Query("UPDATE WalkerFormEntity w SET w.isChecked = true WHERE w.id = :id")
     void updateCheckedField(Long id);
+
 }
