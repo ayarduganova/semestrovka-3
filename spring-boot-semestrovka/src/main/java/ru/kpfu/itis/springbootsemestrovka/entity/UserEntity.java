@@ -24,7 +24,7 @@ public class UserEntity {
 
     private String password;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
@@ -35,6 +35,9 @@ public class UserEntity {
 
     @OneToOne(mappedBy = "user")
     private UserInfoEntity userInfoEntity;
+
+    @OneToOne(mappedBy = "user")
+    private WalkerEntity walkerEntity;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<DogEntity> dogs;

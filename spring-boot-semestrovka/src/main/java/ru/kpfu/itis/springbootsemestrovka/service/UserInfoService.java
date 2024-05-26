@@ -23,7 +23,6 @@ public class UserInfoService {
     public void setUserInfo(String username, UserInfoRequest userInfo){
 
         UserInfoEntity userInfoEntity = userInfoMapper.toEntity(userInfo);
-        System.out.println(userInfoEntity.getFirstName());
         userInfoEntity.setUser(userRepository.getUserEntityByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found")));
         userInfoRepository.save(userInfoEntity);
     }

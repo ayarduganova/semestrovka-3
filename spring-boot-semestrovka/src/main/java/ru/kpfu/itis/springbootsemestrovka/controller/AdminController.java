@@ -68,14 +68,11 @@ public class AdminController {
     @PostMapping("/requests")
     public String approveForm(@RequestParam("requestId")Long walkerFormId,
                               @RequestParam("action") String action){
+
         if (action.equals("approve")) {
-
             walkerFormService.approveForm(walkerFormId);
-
         } else if (action.equals("reject")) {
-
             walkerFormService.rejectForm(walkerFormId);
-
         }
 
         return "redirect:/admin/requests";

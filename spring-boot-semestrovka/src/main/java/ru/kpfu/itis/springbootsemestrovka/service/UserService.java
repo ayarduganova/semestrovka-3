@@ -1,17 +1,13 @@
 package ru.kpfu.itis.springbootsemestrovka.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.UserSignUpRequest;
-import ru.kpfu.itis.springbootsemestrovka.entity.UserInfoEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.mapper.UserMapper;
 import ru.kpfu.itis.springbootsemestrovka.repository.UserRepository;
 import ru.kpfu.itis.springbootsemestrovka.security.user.Role;
 
-
-import java.security.Key;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -74,4 +70,5 @@ public class UserService {
         }
         return false;
     }
+
 }

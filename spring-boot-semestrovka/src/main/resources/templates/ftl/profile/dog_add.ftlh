@@ -2,7 +2,7 @@
 <#import "../PARTS/menu&common.ftlh" as m>
 <#assign isAdmin>
     <#if current_user.isAdmin()>
-        <a href="../admin">Админ</a>
+        <a href="../admin/users">Админ</a>
     </#if>
 </#assign>
 <@m.menuWithCommon page="main" css="/css/profile.css" admin=isAdmin>

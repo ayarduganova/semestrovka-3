@@ -1,10 +1,8 @@
 package ru.kpfu.itis.springbootsemestrovka.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.kpfu.itis.springbootsemestrovka.dto.req.UserInfoRequest;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.WalkerFormRequest;
 import ru.kpfu.itis.springbootsemestrovka.dto.resp.WalkerFormResponse;
-import ru.kpfu.itis.springbootsemestrovka.entity.UserInfoEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.WalkerFormEntity;
 
 import java.util.ArrayList;
