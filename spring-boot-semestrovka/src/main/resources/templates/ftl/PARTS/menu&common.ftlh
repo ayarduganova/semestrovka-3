@@ -18,9 +18,9 @@
         <div class="menu">
             <a href="../profile">Профиль</a>
             <a href="../walkers">Сиделки</a>
-            <a href="#services">Мероприятия</a>
             <a href="../map">Площадки</a>
             ${admin}
+            <a class="right-part" href="/logout">Выйти</a>
         </div>
     </div>
     <#nested>

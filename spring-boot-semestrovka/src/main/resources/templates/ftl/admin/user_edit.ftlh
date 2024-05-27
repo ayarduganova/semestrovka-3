@@ -17,26 +17,26 @@
             </thead>
             <tbody>
             <#list users! as userOrd>
-                    <#if user.username == userOrd.username>
+                    <#if user.username == userOrd.username()>
                         <tr class="edit_tr">
-                        <td>${userOrd.username}</td>
+                        <td>${userOrd.username()}</td>
                         <td><form action="/admin/user" method="post">
                                 <#if user.active>
                                     <div class="edit"><p>Пользователь активен.</p></div>
                                     <div class="edit"><p>Заблокировать ?</p></div>
                                     <div class="edit">
-                                    <input type="radio" name="action" value="yes" id="yes_block" onchange="handleRoleVisibility(this)">
+                                    <input type="radio" name="block_action" value="yes" id="yes_block" onchange="handleRoleVisibility(this)">
                                     <label for="yes">да</label>
-                                    <input type="radio" name="action" value="no" id="no" onchange="handleRoleVisibility(this)" checked>
+                                    <input type="radio" name="block_action" value="no" id="no" onchange="handleRoleVisibility(this)" checked>
                                     <label for="no">нет</label>
                                     </div>
                                 <#else>
                                     <div class="edit"><p>Пользователь неактивен.</p> </div>
                                     <div class="edit"><p>Разблокировать ?</p> </div>
                                     <div class="edit">
-                                    <input type="radio" name="action" value="yes" id="yes" onchange="handleRoleVisibility(this)">
+                                    <input type="radio" name="block_action" value="yes" id="yes" onchange="handleRoleVisibility(this)">
                                     <label for="yes">да</label>
-                                    <input type="radio" name="action" value="no" id="no_block" onchange="handleRoleVisibility(this)" checked>
+                                    <input type="radio" name="block_action" value="no" id="no_block" onchange="handleRoleVisibility(this)" checked>
                                     <label for="no">нет</label>
                                     </div>
                                 </#if>
@@ -49,7 +49,8 @@
                                 </#list>
                                 </div>
                                 <div class="edit">
-                                    <button type="submit">Save</button>
+                                    <button type="submit" value="save" name="btn_action">Сохранить изменения</button>
+                                    <button type="submit" value="delete" name="btn_action">Удалить аккаунт</button>
                                 </div>
                                 <input type="hidden" value="${user.id}" name="userId">
 
@@ -59,15 +60,15 @@
                         </tr>
                     <#else>
                         <tr class="${userOrd.active?string('', 'inactive')}">
-                            <td>${userOrd.username}</td>
+                            <td>${userOrd.username()}</td>
                             <td>
                                 <#if userOrd.active>
-                                    <#list userOrd.roles as role>${role}<#sep>, </#list>
+                                    <#list userOrd.roles() as role>${role}<#sep>, </#list>
                                 <#else>
                                     пользователь заблокирован
                                 </#if>
                             </td>
-                            <td><a href="./${userOrd.id}">изменить</a></td>
+                            <td><a href="./${userOrd.id()}">изменить</a></td>
                         </tr>
                     </#if>
             </#list>

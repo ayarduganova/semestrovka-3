@@ -1,11 +1,12 @@
 package ru.kpfu.itis.springbootsemestrovka.mapper;
 
 import org.springframework.stereotype.Component;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.DogResponse;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.DogRequest;
 import ru.kpfu.itis.springbootsemestrovka.entity.DogEntity;
 
 @Component
-public class DogMapper implements StandartMapper<DogRequest, DogEntity>{
+public class DogMapper implements StandartMapper<DogRequest, DogEntity, DogResponse>{
 
     @Override
     public DogEntity toEntity(DogRequest dogRequest) {
@@ -23,5 +24,11 @@ public class DogMapper implements StandartMapper<DogRequest, DogEntity>{
         dogEntity.setBreed(dogRequest.breed());
         return dogEntity;
     }
+
+    @Override
+    public DogResponse toResponse(DogEntity dogEntity) {
+        return null;
+    }
+
 
 }

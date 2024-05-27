@@ -3,6 +3,7 @@ package ru.kpfu.itis.springbootsemestrovka.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.UserSignUpRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.UserResponse;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.mapper.UserMapper;
 import ru.kpfu.itis.springbootsemestrovka.repository.UserRepository;
@@ -28,33 +29,39 @@ public class UserService {
         return userRepository.existsByUsername(username);
     }
 
-    public List<UserEntity> getAll(){
-        return userRepository.findAll();
+    public List<UserResponse> getAll(){
+        return userMapper.toListResponse(userRepository.findAll());
     }
 
     public void saveUser(UserEntity userEntity){
         userRepository.save(userEntity);
     }
 
-    public void editUser(UserEntity user, String action, Map<String, String> form) {
-        if ("yes".equals(action)) {
-            user.setActive(!user.isActive());
+    public void editUser(UserEntity user, String blockAction, Map<String, String> form, String btnAction) {
+
+        if(btnAction.equals("delete")){
+            deleteUser(user);
         }
-
-        Set<Role> newRoles = new HashSet<>();
-        for (String key : form.keySet()) {
-            if (Role.getStringRoles().contains(key)) {
-                newRoles.add(Role.valueOf(key));
-
+        else {
+            if ("yes".equals(blockAction)) {
+                user.setActive(!user.isActive());
             }
-        }
-        if(user.getRoles().contains(Role.ADMIN)){
-            user.setAdmin(true);
-        }
 
-        user.setRoles(newRoles);
+            Set<Role> newRoles = new HashSet<>();
+            for (String key : form.keySet()) {
+                if (Role.getStringRoles().contains(key)) {
+                    newRoles.add(Role.valueOf(key));
 
-        saveUser(user);
+                }
+            }
+            if(user.getRoles().contains(Role.ADMIN)){
+                user.setAdmin(true);
+            }
+
+            user.setRoles(newRoles);
+
+            saveUser(user);
+        }
     }
 
     public void addRole(UserEntity user, Role role){
@@ -69,6 +76,11 @@ public class UserService {
             }
         }
         return false;
+    }
+
+
+    private void deleteUser(UserEntity user){
+        userRepository.delete(user);
     }
 
 }

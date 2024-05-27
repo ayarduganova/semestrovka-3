@@ -1,20 +1,27 @@
 package ru.kpfu.itis.springbootsemestrovka.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.PostRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.req.SearchRequest;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.WalkerFormRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.AjaxResponse;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.PostResponse;
+import ru.kpfu.itis.springbootsemestrovka.entity.PostEntity;
 import ru.kpfu.itis.springbootsemestrovka.security.user.Role;
 import ru.kpfu.itis.springbootsemestrovka.security.user.UserDetailsImpl;
 import ru.kpfu.itis.springbootsemestrovka.service.PostService;
 import ru.kpfu.itis.springbootsemestrovka.service.UserService;
 import ru.kpfu.itis.springbootsemestrovka.service.WalkerFormService;
 import ru.kpfu.itis.springbootsemestrovka.service.UserInfoService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
