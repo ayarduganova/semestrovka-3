@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class WalkerFormMapper implements StandartMapper<WalkerFormRequest, WalkerFormEntity>{
+public class WalkerFormMapper implements StandartMapper<WalkerFormRequest, WalkerFormEntity, WalkerFormResponse>{
 
     @Override
     public WalkerFormEntity toEntity(WalkerFormRequest walkerFormRequest) {
@@ -22,6 +22,7 @@ public class WalkerFormMapper implements StandartMapper<WalkerFormRequest, Walke
                 .build();
     }
 
+    @Override
     public WalkerFormResponse toResponse(WalkerFormEntity walkerFormEntity){
         return WalkerFormResponse.builder()
                 .id(walkerFormEntity.getId())

@@ -8,7 +8,7 @@ import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserInfoEntity;
 
 @Component
-public class UserInfoMapper implements StandartMapper<UserInfoRequest, UserInfoEntity> {
+public class UserInfoMapper implements StandartMapper<UserInfoRequest, UserInfoEntity, UserInfoResponse> {
 
     @Override
     public UserInfoEntity toEntity(UserInfoRequest userInfoRequest) {
@@ -46,6 +46,7 @@ public class UserInfoMapper implements StandartMapper<UserInfoRequest, UserInfoE
         return userInfoEntity;
     }
 
+    @Override
     public UserInfoResponse toResponse(UserInfoEntity user){
         return UserInfoResponse.builder()
                 .firstName(user.getFirstName())

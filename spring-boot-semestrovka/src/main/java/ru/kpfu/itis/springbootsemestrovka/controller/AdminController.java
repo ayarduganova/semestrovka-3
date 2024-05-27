@@ -40,17 +40,19 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         model.addAttribute("users", userService.getAll());
-        model.addAttribute("current_user", currentUser);
+        model.addAttribute("current_user", currentUser.getUser());
 
         return "admin/user_edit";
     }
 
     @PostMapping("/user")
     public String userEdit(@RequestParam("userId") UserEntity user,
-                           @RequestParam("action") String action,
-                           @RequestParam Map<String, String> form) {
+                           @RequestParam("block_action") String blockAction,
+                           @RequestParam Map<String, String> form,
+                           @RequestParam("btn_action") String btnAction) {
 
-        userService.editUser(user, action, form);
+
+        userService.editUser(user, blockAction, form, btnAction);
 
         return "redirect:/admin/users";
     }

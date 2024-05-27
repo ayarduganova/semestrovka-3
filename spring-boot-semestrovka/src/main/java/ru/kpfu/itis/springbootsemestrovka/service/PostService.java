@@ -3,6 +3,8 @@ package ru.kpfu.itis.springbootsemestrovka.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.PostRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.req.SearchRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.AjaxResponse;
 import ru.kpfu.itis.springbootsemestrovka.dto.resp.PostResponse;
 import ru.kpfu.itis.springbootsemestrovka.entity.PostEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
@@ -29,4 +31,7 @@ public class PostService {
         return postMapper.toListResponse(postRepository.findAll());
     }
 
+    public List<PostResponse> getPostLikeByQuery(String query) {
+        return postMapper.toListResponse(postRepository.getPostLikeByQuery(query));
+    }
 }

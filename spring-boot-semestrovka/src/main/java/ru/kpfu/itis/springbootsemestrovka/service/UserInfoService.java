@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.UserInfoRequest;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.WalkerFormRequest;
+import ru.kpfu.itis.springbootsemestrovka.dto.resp.UserInfoResponse;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserInfoEntity;
 import ru.kpfu.itis.springbootsemestrovka.exception.UserInfoNotFoundException;
@@ -29,6 +30,10 @@ public class UserInfoService {
 
     public UserInfoEntity getProfileByUser(UserEntity user) {
         return userInfoRepository.getUserInfoEntityByUser(user).orElseThrow(() -> new UserInfoNotFoundException(user.getId()));
+    }
+
+    public UserInfoResponse getUserInfoByUser(UserEntity user){
+        return userInfoMapper.toResponse(getProfileByUser(user));
     }
 
     public void editPersonProfile(UserEntity user, UserInfoRequest userInfoRequest) {

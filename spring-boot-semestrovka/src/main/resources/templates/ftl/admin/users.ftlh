@@ -21,15 +21,15 @@
         <tbody>
         <#list users! as user>
             <tr class="${user.active?string('', 'inactive')}">
-                <td>${user.username}</td>
+                <td>${user.username()}</td>
                 <td>
                     <#if user.active>
-                        <#list user.roles as role>${role}<#sep>, </#list>
+                        <#list user.roles() as role>${role}<#sep>, </#list>
                     <#else>
                         пользователь заблокирован
                     </#if>
                 </td>
-                <td><a href="./user/${user.id}">изменить</a></td>
+                <td><a href="./user/${user.id()}">изменить</a></td>
             </tr>
         </#list>
         </tbody>

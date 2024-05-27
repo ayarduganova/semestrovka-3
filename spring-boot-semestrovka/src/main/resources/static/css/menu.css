@@ -18,6 +18,9 @@ body {
     font-size: 19px;
     text-decoration: none;
 }
+.navbar .right-part {
+    float: right;
+}
 
 .navbar a:hover {
     background-color: #ebebeb;;

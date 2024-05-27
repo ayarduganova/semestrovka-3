@@ -7,6 +7,10 @@
 </#assign>
 <@m.menuWithCommon page="main" css="/css/walkers.css" admin=isAdmin>
 
+    <form id="search-form">
+        <input type="text" class="form-control" id="query" name="query"/>
+    </form>
+
     <div class="modal" id="modal">
         <form method="post">
         <div class="modal_box">
@@ -25,21 +29,25 @@
         </form>
     </div>
 
-    <div class="posts">
-        <#if service.hasRole(current_user, role)>
+    <#if service.hasRole(current_user, role)>
         <form method="get" action="/walkers/addPost">
             <button class="plus-button">+</button>
         </form>
-        <#else>
-            <a href="#" class="btn" id="btn">стать выгульщиком</a>
-        </#if>
+    <#else>
+        <a href="#" class="btn" id="btn">стать выгульщиком</a>
+    </#if>
 
+    <div id="feedback" class="posts">
         <#list posts! as post>
-            <p>Пользователь: ${post.userInfoResponse().firstName()} ${post.userInfoResponse().lastName()}</p>
-            <p>Комментарий: ${post.comment()}</p>
+            <p>Пользователь: ${post.userInfoResponse.firstName} ${post.userInfoResponse.lastName}</p>
+            <p>Комментарий: ${post.comment}</p>
             <button type="submit">Написать</button>
         </#list>
     </div>
 
     <script src="/js/walkers.js" type="text/javascript"></script>
+    <script type="application/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/js/ajax.js"></script>
 </@m.menuWithCommon>

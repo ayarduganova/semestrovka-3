@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class PostMapper implements StandartMapper<PostRequest, PostEntity>{
+public class PostMapper implements StandartMapper<PostRequest, PostEntity, PostResponse>{
 
     private final UserInfoMapper userInfoMapper;
 
@@ -22,6 +22,7 @@ public class PostMapper implements StandartMapper<PostRequest, PostEntity>{
                 .build();
     }
 
+    @Override
     public PostResponse toResponse(PostEntity postEntity){
         return PostResponse.builder()
                 .comment(postEntity.getComment())

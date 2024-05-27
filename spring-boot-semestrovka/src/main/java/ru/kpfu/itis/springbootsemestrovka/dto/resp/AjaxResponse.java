@@ -4,10 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
-public class PostResponse {
-    private String comment;
-    private UserInfoResponse userInfoResponse;
+public class AjaxResponse {
+
+    List<PostResponse> result;
+
 }

@@ -6,7 +6,7 @@ import ru.kpfu.itis.springbootsemestrovka.dto.resp.WalkerResponse;
 import ru.kpfu.itis.springbootsemestrovka.entity.WalkerEntity;
 
 @Component
-public class WalkerMapper implements StandartMapper<WalkerRequest, WalkerEntity>{
+public class WalkerMapper implements StandartMapper<WalkerRequest, WalkerEntity, WalkerResponse>{
 
     @Override
     public WalkerEntity toEntity(WalkerRequest walkerRequest) {
@@ -25,6 +25,7 @@ public class WalkerMapper implements StandartMapper<WalkerRequest, WalkerEntity>
         return walkerEntity;
     }
 
+    @Override
     public WalkerResponse toResponse(WalkerEntity walkerEntity) {
         return WalkerResponse.builder()
                 .price(walkerEntity.getPrice())

@@ -24,7 +24,7 @@ public class UserEntity {
 
     private String password;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
@@ -33,10 +33,10 @@ public class UserEntity {
 
     private boolean isAdmin;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserInfoEntity userInfoEntity;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private WalkerEntity walkerEntity;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

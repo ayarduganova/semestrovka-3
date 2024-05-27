@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/spring_boot_semestrovka
     username: postgres
-    password: password
+    password: Medc2vsek85233
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
