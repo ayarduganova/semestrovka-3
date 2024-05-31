@@ -28,7 +28,7 @@ public class SecurityConfig {
     private final UserDetailsServiceImpl userService;
 
     private static final String[] PERMIT_ALL = {
-            "/signUp/**", "/login-error", "/css/**", "/js/**"
+            "/signUp/**", "/login-error", "/css/**", "/js/**", "/img/**"
     };
 
     @Bean

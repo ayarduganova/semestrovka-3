@@ -8,8 +8,10 @@ import ru.kpfu.itis.springbootsemestrovka.dto.req.UserSignUpRequest;
 import ru.kpfu.itis.springbootsemestrovka.dto.resp.PostResponse;
 import ru.kpfu.itis.springbootsemestrovka.dto.resp.UserResponse;
 import ru.kpfu.itis.springbootsemestrovka.entity.PostEntity;
+import ru.kpfu.itis.springbootsemestrovka.entity.RoleEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.security.user.Role;
+import ru.kpfu.itis.springbootsemestrovka.service.RoleService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +22,14 @@ import java.util.Set;
 public class UserMapper implements StandartMapper<UserSignUpRequest, UserEntity, UserResponse> {
 
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     @Override
     public UserEntity toEntity(UserSignUpRequest userSignUpRequest) {
         return UserEntity.builder()
                 .username(userSignUpRequest.username())
                 .password(passwordEncoder.encode(userSignUpRequest.password()))
-                .roles(Set.of(Role.USER))
+                .roles(roleService.getUserRole())
                 .isActive(true)
                 .isAdmin(false)
                 .build();

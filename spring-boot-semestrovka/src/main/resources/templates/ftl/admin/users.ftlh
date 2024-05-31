@@ -6,8 +6,7 @@
     </#if>
 </#assign>
 <@m.menuWithCommon page="admin" css="/css/admin.css" admin=isAdmin>
-      <a href="../admin/users">Пользователи</a>
-    <a href="../admin/requests">Запросы</a>
+    <a class="req" href="../admin/requests">Запросы</a>
 
     <div class="table-wrap">
     <table class="table">
@@ -24,7 +23,7 @@
                 <td>${user.username()}</td>
                 <td>
                     <#if user.active>
-                        <#list user.roles() as role>${role}<#sep>, </#list>
+                        <#list user.roles() as role>${role.role}<#sep>, </#list>
                     <#else>
                         пользователь заблокирован
                     </#if>

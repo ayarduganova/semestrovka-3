@@ -32,8 +32,7 @@ public class ProfileController {
 
         model.addAttribute("profile", userInfoService.getProfileByUser(user.getUser()));
         model.addAttribute("dogs", dogService.getDogs(user.getUser()));
-        model.addAttribute("current_user", user.getUser());
-        model.addAttribute("role", Role.WALKER);
+        model.addAttribute("current_user", user.getUser());;
         model.addAttribute("service", userService);
 
         if(user.getUser().getWalkerEntity() != null){
@@ -62,30 +61,31 @@ public class ProfileController {
     }
 
     @GetMapping("/editDog/{id}")
-    public String editDogProfile(@PathVariable("id") DogEntity dog, Model model, @AuthenticationPrincipal UserDetailsImpl user) {
+    public String editDogProfile(@PathVariable("id") Long dogId, Model model, @AuthenticationPrincipal UserDetailsImpl user) {
 
-        model.addAttribute("dog", dog);
-        model.addAttribute("dogs", dogService.getAll());
+        model.addAttribute("dog", dogService.getDogById(dogId));
+        model.addAttribute("dogs", dogService.getDogs(user.getUser()));
         model.addAttribute("current_user", user.getUser());
 
         return "profile/dog_profile_edit";
     }
 
     @PostMapping("/editDog")
-    public String editDogProfile(@RequestParam("dogId") DogEntity dog,
+    public String editDogProfile(@RequestParam("dogId") Long dogId,
                                  DogRequest dogRequest) {
 
-        dogService.editDog(dog, dogRequest);
+        dogService.editDog(dogId, dogRequest);
 
-        return "redirect:/profile";
+        return "redirect:/profile?tab=d";
     }
 
     @GetMapping("/addDog")
     public String getViewAddDog(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
 
         model.addAttribute("current_user", user.getUser());
+        model.addAttribute("dogs", dogService.getDogs(user.getUser()));
 
-        return "profile/dog_add";
+        return "profile/dog_profile_edit";
     }
 
     @PostMapping("/addDog")
@@ -94,7 +94,7 @@ public class ProfileController {
 
         dogService.addDog(user.getUser(), dogRequest);
 
-        return "redirect:/profile";
+        return "redirect:/profile?tab=d";
     }
 
     @GetMapping("/editWalker")
@@ -114,7 +114,7 @@ public class ProfileController {
 
         walkerService.editWalker(walkerRequest, user.getUser());
 
-        return "redirect:/profile";
+        return "redirect:/profile?tab=w";
     }
 
 }

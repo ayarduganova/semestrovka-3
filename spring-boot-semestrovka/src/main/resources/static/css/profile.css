@@ -1,28 +1,36 @@
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    display: flex;
+    margin-top: 30px;
 }
 .tab button {
-    background-color: inherit;
+    background-color: #AF7740;
+    color: white;
     float: left;
-    border: none;
+    border: 2px solid #ebebeb;
+    border-radius: 23px;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
     transition: 0.3s;
+    padding: 16px 16px;
+    margin-top: 10px;
+    margin-left: 1px;
+    height: 48px;
 }
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #bd956e;
 }
 .tab button.active {
-    background-color: #ccc;
+    background-color: #835f3c;
 }
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
     border-top: none;
+    border-radius: 20px;
+    height: 60%;
+    background-color: #ebe9ce;
+    margin-top: 10px;
 }
 
 .plus-button {
@@ -38,21 +46,64 @@
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 8px;
 }
 .plus-button:hover {
     background-color: #e0ccb1;
 }
-.plus-button::before,
-.plus-button::after {
-    content: '';
-    position: absolute;
-    background-color: white;
-    width: 2px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+.wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 100vh;
+    margin: 0 auto;
 }
-.plus-button::before {
-    transform: translate(-50%, -50%) rotate(90deg);
+
+.tab, .tabcontent {
+    width: 100%;
+    box-sizing: border-box;
+}
+strong {
+    color: #634c36;
+}
+
+.button-link {
+    display: inline-block; /* делаем ссылку блочным элементом, чтобы можно было управлять её шириной и высотой */
+    padding: 8px 8px; /* отступы вокруг текста */
+    background-color: #835f3c;/* цвет фона */
+    color: white; /* цвет текста */
+    text-decoration: none; /* убираем подчеркивание */
+    border: none; /* убираем границу, если ссылка является кнопкой */
+    border-radius: 20px; /* скругляем углы */
+    cursor: pointer; /* курсор при наведении */
+    transition: background-color 0.3s ease; /* плавное изменение цвета фона при наведении */
+    margin-left: 8px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+}
+
+.button-link:hover {
+    background-color: #AF7740; /* изменяем цвет фона при наведении */
+}
+.info {
+    margin-top: 8px;
+    margin-left: 8px;
+}
+.dog-info {
+    margin-top: 8px;
+    margin-left: 8px;
+    border: 2px solid #634c36;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 9px;
+}
+input {
+    border-radius: 10px;
+    height: 15px;
+    margin-left: 8px;
+    padding: 5px 5px;
+    border: none;
+    width: 220px;
 }

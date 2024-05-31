@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
+import ru.kpfu.itis.springbootsemestrovka.mapper.RoleMapper;
 
 import java.util.Collection;
 

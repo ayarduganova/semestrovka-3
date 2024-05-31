@@ -12,5 +12,17 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-// Получить элемент с id="defaultOpen" и нажать на него
-document.getElementById("defaultOpen").click();
+window.onload = function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var tabToOpen = urlParams.get('tab');
+    if (tabToOpen) {
+        document.getElementById(tabToOpen).click();
+    }
+    else if (document.getElementById('defaultOpen')){
+        document.getElementById('defaultOpen').click();
+    }
+    else {
+        document.getElementById('p').click();
+    }
+
+};

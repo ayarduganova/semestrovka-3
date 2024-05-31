@@ -6,6 +6,7 @@
     </#if>
 </#assign>
 <@m.menuWithCommon page="main" css="/css/profile.css" admin=isAdmin>
+    <div class="wrapper">
     <div class="tab">
         <button class="tablinks">Человек</button>
         <button class="tablinks" onclick="openTab(event, 'Dog')" id="defaultOpen">Собака</button>
@@ -20,13 +21,13 @@
                 <button type="submit">Save</button>
 
             <#list dogs! as dogOrd>
-                <p>Имя: ${dogOrd.name}</p>
+                <p><strong>Имя: </strong>${dogOrd.name}</p>
                 <p>Возраст: ${dogOrd.age}</p>
                 <p>Порода: ${dogOrd.breed}</p>
                 <a href="./profile/editDog/${dogOrd.id}">редактировать</a>
             </#list>
         </div>
     </form>
-
+    </div>
     <script src="/js/profile.js" type="text/javascript"></script>
 </@m.menuWithCommon>

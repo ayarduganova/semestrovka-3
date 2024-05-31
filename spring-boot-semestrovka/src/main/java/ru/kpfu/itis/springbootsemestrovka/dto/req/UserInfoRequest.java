@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Builder
 public class UserInfoRequest {
 
     private String firstName;

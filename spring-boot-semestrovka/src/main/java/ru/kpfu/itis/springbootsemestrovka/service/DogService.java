@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.DogRequest;
 import ru.kpfu.itis.springbootsemestrovka.entity.DogEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
+import ru.kpfu.itis.springbootsemestrovka.exception.DogNotFoundServiceException;
 import ru.kpfu.itis.springbootsemestrovka.mapper.DogMapper;
 import ru.kpfu.itis.springbootsemestrovka.repository.DogRepository;
 
@@ -25,7 +26,9 @@ public class DogService {
         return dogRepository.findAll();
     }
 
-    public void editDog(DogEntity dogEntity, DogRequest dogRequest) {
+    public void editDog(Long dogId, DogRequest dogRequest) {
+        DogEntity dogEntity = getDogById(dogId);
+
         dogRepository.save(dogMapper.updateEntityFromRequest(dogRequest, dogEntity));
     }
 
@@ -35,4 +38,8 @@ public class DogService {
         dogRepository.save(dogEntity);
     }
 
+    public DogEntity getDogById(Long dogId) {
+        return dogRepository.getDogEntityById(dogId)
+                .orElseThrow(() -> new DogNotFoundServiceException(dogId));
+    }
 }
