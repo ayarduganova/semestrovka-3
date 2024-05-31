@@ -6,15 +6,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public enum Role implements GrantedAuthority {
+public enum Role  {
     USER,
     ADMIN,
     WALKER;
-
-    @Override
-    public String getAuthority() {
-        return name();
-    }
 
     public static Set<String> getStringRoles(){
         return Arrays.stream(Role.values())

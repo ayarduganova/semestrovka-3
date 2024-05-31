@@ -1,7 +1,6 @@
 .table-wrap {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
 }
 
 .table {
@@ -68,24 +67,37 @@
     border-radius: 8px;
 }
 
-/*input[type="radio"] {*/
-/*    !* Сброс стилей по умолчанию *!*/
-/*    -webkit-appearance: none;*/
-/*    -moz-appearance: none;*/
-/*    appearance: none;*/
-/*    !* Добавление своих стилей *!*/
-/*    position: relative;*/
-/*    width: 15px;*/
-/*    height: 15px;*/
-/*    border: 2px solid #964b00;*/
-/*    border-radius: 50%;*/
-/*    outline: none;*/
-/*    cursor: pointer;*/
-/*}*/
-/*input[type="radio"]:checked {*/
-/*    background-color: #964b00;*/
-/*}*/
+.wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #ebe9ce;
+}
 
-/*input[type="radio"]:not(:checked) {*/
-/*    background-color: #ebebeb;*/
-/*}*/
+.request {
+    margin: 20px;
+    border: 2px solid #634c36;
+    border-radius: 20px;
+    padding: 15px;
+}
+.btn {
+    background-color: #634c36;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding: 8px;
+}
+h1 {
+    color: #634c36;
+    text-align: center;
+    margin: 0
+}
+p {
+    margin: 20px;
+}
+.req {
+    color: #634c36;
+
+}

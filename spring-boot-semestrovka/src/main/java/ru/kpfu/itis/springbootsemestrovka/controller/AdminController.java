@@ -10,6 +10,7 @@ import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.WalkerFormEntity;
 import ru.kpfu.itis.springbootsemestrovka.security.user.Role;
 import ru.kpfu.itis.springbootsemestrovka.security.user.UserDetailsImpl;
+import ru.kpfu.itis.springbootsemestrovka.service.RoleService;
 import ru.kpfu.itis.springbootsemestrovka.service.UserService;
 import ru.kpfu.itis.springbootsemestrovka.service.WalkerFormService;
 
@@ -22,6 +23,7 @@ import java.util.Map;
 public class AdminController {
 
     private final UserService userService;
+    private final RoleService roleService;
     private final WalkerFormService walkerFormService;
 
     @GetMapping("/users")
@@ -38,7 +40,7 @@ public class AdminController {
                            @AuthenticationPrincipal UserDetailsImpl currentUser) {
 
         model.addAttribute("user", user);
-        model.addAttribute("roles", Role.values());
+        model.addAttribute("roles", roleService.allRoles());
         model.addAttribute("users", userService.getAll());
         model.addAttribute("current_user", currentUser.getUser());
 

@@ -6,16 +6,14 @@
     </#if>
 </#assign>
 <@m.menuWithCommon page="main" css="/css/walkers.css" admin=isAdmin>
+
+    <div class="wrapper">
     <form method="post">
-    <p>Комментарий: <textarea name="comment" rows="5" cols="33" placeholder="Введите свой комментарий" required></textarea></p>
+    <p>Комментарий: <label>
+            <textarea name="comment" rows="5" cols="33" placeholder="Введите свой комментарий" required></textarea>
+        </label></p>
     <button type="submit">Save</button>
     </form>
-
-    <div class="posts">
-        <#list posts! as post>
-            <p>Пользователь: ${post.userInfoResponse().firstName()} ${post.userInfoResponse().lastName()}</p>
-            <p>Комментарий: ${post.comment()}</p>
-        </#list>
     </div>
 
     <script src="/js/walkers.js" type="text/javascript"></script>

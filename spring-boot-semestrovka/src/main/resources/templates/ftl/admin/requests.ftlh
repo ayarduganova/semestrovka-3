@@ -6,9 +6,12 @@
     </#if>
 </#assign>
 <@m.menuWithCommon page="admin" css="/css/admin.css" admin=isAdmin>
-    <div class="request">
+    <div class="wrapper">
+        <h1>Запросы</h1>
+        <#if requests?size != 0>
         <#list requests as request>
             <form method="post">
+                <div class="request">
                 <p>Имя: ${request.firstName()}</p>
                 <p>Фамилия: ${request.lastName()}</p>
                 <p>Телефон: ${request.phone()}</p>
@@ -17,8 +20,13 @@
 
                 <button type="submit" class="btn" name="action" value="approve">Одобрить</button>
                 <button type="submit" class="btn" name="action" value="reject">Отклонить</button>
+
+                </div>
             </form>
         </#list>
+        <#else>
+            <p>Список запросов пуст</p>
+        </#if>
     </div>
 
 </@m.menuWithCommon>

@@ -6,10 +6,13 @@ import ru.kpfu.itis.springbootsemestrovka.entity.DogEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DogRepository extends JpaRepository<DogEntity, Long> {
 
     List<DogEntity> getDogEntitiesByUser(UserEntity user);
+
+    Optional<DogEntity> getDogEntityById(Long id);
 
 }

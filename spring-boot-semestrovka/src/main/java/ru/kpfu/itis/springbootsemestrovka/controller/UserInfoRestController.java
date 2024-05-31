@@ -13,31 +13,40 @@ import ru.kpfu.itis.springbootsemestrovka.service.UserInfoService;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name="user-info")
+@Tag(name = "Информация о пользователе")
 @RequestMapping("/rest/user-info")
 public class UserInfoRestController {
 
     private final UserInfoService userInfoService;
 
-    @Operation(description = "Create info for user", summary = "create-user-info")
+    @Operation(
+            summary = "Заполнить информацию о пользователе",
+            description = "Позволяет заполнить информацию о пользователе по его username и по запросу с инфой"
+    )
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/setInfo")
-    public void setUserInfo(@RequestParam("username") String username, @RequestBody UserInfoRequest userInfo){
+    public void setUserInfo(@RequestParam("username") String username, @RequestBody UserInfoRequest userInfo) {
         userInfoService.setUserInfo(username, userInfo);
     }
 
-    @Operation(description = "Get info by user", summary = "get-user-info")
+    @Operation(
+            summary = "Получить информацию о пользователе для профиля",
+            description = "Позволяет получить информацию о пользователе для профиля по пользователю"
+    )
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/getByUser")
     public UserInfoResponse getProfileByUser(@RequestBody UserEntity user) {
         return userInfoService.getUserInfoByUser(user);
     }
 
-    @Operation(description = "Update user-info", summary = "update-user-info")
+    @Operation(
+            summary = "Отредактировать информацию о пользователе для профиля",
+            description = "Позволяет отредактировать информацию о пользователе по пользователю и запросу"
+    )
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/editInfo")
     public void editPersonProfile(@RequestBody UserEntity user, @RequestBody UserInfoRequest userInfoRequest) {
-       userInfoService.editPersonProfile(user, userInfoRequest);
+        userInfoService.editPersonProfile(user, userInfoRequest);
     }
 
 }

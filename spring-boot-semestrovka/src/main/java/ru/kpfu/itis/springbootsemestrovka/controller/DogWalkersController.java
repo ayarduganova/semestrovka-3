@@ -2,6 +2,7 @@ package ru.kpfu.itis.springbootsemestrovka.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,14 +30,13 @@ import java.util.stream.Collectors;
 public class DogWalkersController {
 
     private final WalkerFormService walkerFormService;
-    private final UserInfoService userInfoService;
     private final UserService userService;
     private final PostService postService;
 
     @GetMapping
     public String getWalkers(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
 
-        model.addAttribute("user", userInfoService.getProfileByUser(user.getUser()));
+        model.addAttribute("user", user.getUser().getUserInfoEntity());
         model.addAttribute("current_user", user.getUser());
         model.addAttribute("service", userService);
         model.addAttribute("role", Role.WALKER);
@@ -54,6 +54,7 @@ public class DogWalkersController {
     }
 
     @GetMapping("/addPost")
+    @PreAuthorize("hasAuthority('WALKER')")
     public String getViewAddPost(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
 
         model.addAttribute("current_user", user.getUser());
@@ -63,6 +64,7 @@ public class DogWalkersController {
     }
 
     @PostMapping("/addPost")
+    @PreAuthorize("hasAuthority('WALKER')")
     public String addPost(@AuthenticationPrincipal UserDetailsImpl user,
                          PostRequest postRequest) {
 

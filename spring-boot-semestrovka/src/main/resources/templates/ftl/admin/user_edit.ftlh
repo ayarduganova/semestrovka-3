@@ -44,7 +44,7 @@
                                 <div class="edit" id="roleList">
                                 <#list roles as role>
                                     <div>
-                                        <label><input type="checkbox" name="${role}" ${user.roles?seq_contains(role)?string("checked", "")}>${role}</label>
+                                        <label><input type="checkbox" name="${role}" ${user.roles?seq_contains(role)?string("checked", "")}>${role.role}</label>
                                     </div>
                                 </#list>
                                 </div>

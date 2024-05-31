@@ -19,6 +19,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO user_role (user_id, roles) VALUES (:userId, :role)", nativeQuery = true)
-    void addRoleToUser( Long userId, String role);
+    void addRoleToUser(Long userId, String role);
 
 }

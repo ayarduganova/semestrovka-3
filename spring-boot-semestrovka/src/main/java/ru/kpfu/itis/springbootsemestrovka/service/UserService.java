@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springbootsemestrovka.dto.req.UserSignUpRequest;
 import ru.kpfu.itis.springbootsemestrovka.dto.resp.UserResponse;
+import ru.kpfu.itis.springbootsemestrovka.entity.RoleEntity;
 import ru.kpfu.itis.springbootsemestrovka.entity.UserEntity;
+import ru.kpfu.itis.springbootsemestrovka.mapper.RoleMapper;
 import ru.kpfu.itis.springbootsemestrovka.mapper.UserMapper;
 import ru.kpfu.itis.springbootsemestrovka.repository.UserRepository;
 import ru.kpfu.itis.springbootsemestrovka.security.user.Role;
@@ -19,7 +21,9 @@ import java.util.Set;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RoleService roleService;
     private final UserMapper userMapper;
+    private final RoleMapper roleMapper;
 
     public UserEntity signUp(UserSignUpRequest userRequest) {
         return userRepository.save(userMapper.toEntity(userRequest));
@@ -58,20 +62,20 @@ public class UserService {
                 user.setAdmin(true);
             }
 
-            user.setRoles(newRoles);
+            user.setRoles(roleMapper.toListRoleEntity(newRoles));
 
             saveUser(user);
         }
     }
 
     public void addRole(UserEntity user, Role role){
-        user.getRoles().add(role);
+        user.getRoles().add(roleMapper.toEntity(role));
         userRepository.addRoleToUser(user.getId(), role.name());
     }
 
-    public boolean hasRole(UserEntity user, Role userRole){
-        for (Role role : user.getRoles()){
-            if (role.equals(userRole)){
+    public boolean hasWalkerRole(UserEntity user){
+        for (RoleEntity role : user.getRoles()){
+            if (role.getRole().equals(Role.WALKER)){
                 return true;
             }
         }

@@ -58,20 +58,6 @@ public class SignUpController {
         return "redirect:/login";
     }
 
-    //нужно подправить
-    @GetMapping("/login-error")
-    public String loginError(Model model) {
-        model.addAttribute("message", INVALID_DATA);
-        return "signin/login";
-    }
-
-    //нужно убрать
-    @GetMapping("/main")
-    public String main(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        model.addAttribute("current_user", user.getUser());
-        return "main/main";
-    }
-
     @GetMapping("/logout")
     public String logout() {
         return "redirect:/login?logout";
